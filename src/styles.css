@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background-image: url("./images/paper-background-noise.png");
+  margin: 0;
+  padding: 0;
+}
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";

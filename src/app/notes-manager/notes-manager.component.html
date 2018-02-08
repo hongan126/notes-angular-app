@@ -1,0 +1,60 @@
+<div class="mdc-elevation--z4 all-page">
+  <app-header></app-header>
+
+  <div id="notes-manager">
+
+    <div id="notes-list">
+      <div style="background: rgba(255, 255, 255, 0.7); padding-left: 6px;">
+        <button mat-button style="background-color: #09c5ff; color: white;" (click)="addItem()"><b>Add +</b></button>
+        <button mat-button style="background-color: red;color: white;" *ngIf="selectedNote"
+                (click)="deleteItem(selectedNote)"><b>Delete
+          -</b></button>
+      </div>
+
+      <ul class="list">
+        <li *ngFor="let note of notes" (click)="onSelect(note)" class="note-item"
+            [class.selected]="note === selectedNote">
+          <span style="padding: 6px;">{{note.title}}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="note-content">
+      <div style="height: 100%; border-left: solid 1px rgba(255, 255, 255, 1);">
+        <div style="padding: 10px;">
+      <textarea *ngIf="selectedNote" matInput matTextareaAutosize matAutosizeMinRows="7"
+                class="note-content-textarea"
+                [(ngModel)]="selectedNote.noteContent"
+                (keyup)="updateNoteTitle()">
+        {{selectedNote.noteContent}}
+      </textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br/>
+<!--<input type="radio" group="choice" [(ngModel)]="choice" value="1">Một-->
+<!--|<input type="radio" group="choice" [(ngModel)]="choice" value="2">Hai-->
+<!--|<input type="radio" group="choice" [(ngModel)]="choice" selected value="3">Ba<br/>-->
+<!--<div>-->
+<!--<div [ngSwitch]="choice">-->
+<!--<div *ngSwitchCase="'1'">Một</div>-->
+<!--<div *ngSwitchCase="'2'">Hai</div>-->
+<!--<div *ngSwitchCase="'3'">Ba</div>-->
+<!--<div *ngSwitchCase="'4'">Mốn</div>-->
+<!--<div *ngSwitchDefault>None</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<p>The sum of 1 + 1 is not {{1 + 1 + getVal()}}</p>-->
+
+<!--<span [style.color]="fontColor">blue</span>-->
+
+<!--<div [class.special]="isSpecial">The class binding is special</div>-->
+<!--<div [ngClass]="currentClasses">This div is initially saveable, unchanged, and special</div>-->
+
+<!--<p>The hero's birthday is {{ birthday | date:format }}</p>-->
+
+

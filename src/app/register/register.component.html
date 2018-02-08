@@ -1,0 +1,84 @@
+<h1 style="text-align:center">
+  Welcome to notes app!
+</h1>
+
+<form novalidate name="form"
+      (ngSubmit)="register()"
+      [formGroup]="fgRegister"
+      class="mdc-elevation--z5 register-form">
+
+  <h2 class="align-canter">Signin</h2>
+  <p style="text-align: center; color: red; font-weight: bold; text-shadow: 1px 1px 0px white;">
+    <alert></alert>
+  </p>
+
+  <mat-form-field class="full-width-signin">
+    <input type="text" matInput placeholder="Firstname" name="firstname"
+           [(ngModel)]="model.firstName"
+           formControlName="firstName"
+    />
+    <mat-error *ngIf="fgRegister.get('firstName').hasError('required')">
+      Firstname is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field class="full-width-signin">
+    <input type="text" matInput placeholder="Lastname" name="lastname"
+           [(ngModel)]="model.lastName"
+           formControlName="lastName">
+    <mat-error *ngIf="fgRegister.get('lastName').hasError('required')">
+      Lastname is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field class="full-width-signin">
+    <input type="text" matInput placeholder="Email" name="username"
+           [(ngModel)]="model.username"
+           formControlName="username"
+    />
+    <mat-error *ngIf="fgRegister.get('username').hasError('email') && !fgRegister.get('username').hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="fgRegister.get('username').hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="fgRegister.get('username').hasError('invalid-username') && !fgRegister.get('username').hasError('email')">
+      Email is <strong>invalid</strong>
+    </mat-error>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field class="full-width-signin">
+    <input matInput placeholder="Password" name="password"
+           [type]="hide ? 'password':'text'"
+           [(ngModel)]="model.password"
+           formControlName="password"
+    />
+    <mat-icon
+      matSuffix (click)="hide = !hide">{{hide?'visibility':'visibility_off'}}
+    </mat-icon>
+    <mat-error *ngIf="fgRegister.get('password').hasError('required')">
+      Passs is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="fgRegister.get('password').hasError('minlength')">
+      The minimum number of characters is 8.
+    </mat-error>
+  </mat-form-field>
+  <br/>
+
+  <div style="width: 100%; text-align: right;">
+    <button type="button" mat-raised-button color="default" routerLink="/login">Cancel</button>
+    <button
+      [disabled]="
+      fgRegister.get('firstName').invalid ||
+      fgRegister.get('lastName').invalid ||
+      fgRegister.get('username').invalid ||
+      fgRegister.get('password').invalid"
+      type="submit" mat-raised-button color="default">
+      <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;<b>Signin</b>
+    </button>
+  </div>
+
+</form>
